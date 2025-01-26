@@ -1,39 +1,51 @@
-#include<stdio.h>
-#include<stdlib.h> 
-
-struct linked {
+#include<stdio.h> 
+#include<stdlib.h>
+typedef struct node{
     int data;
-    struct linked *next;
-};
+    struct node *next;
+}node;
+void freeinsert_at_begin(node *head){
+    node *temp=head;
+    while(temp!=NULL){
+        head=head->next;
+        free(temp);
+        temp=head;
+    }
 
-void insertatbegin(struct linked **head, int num) {
-    struct linked *new = (struct linked *) malloc(sizeof(struct linked));
-    if (new == NULL) {
-        printf("Memory allocation failed\n");
-        return;
-    }
-    new->data = num;
-    new->next = NULL;
-    if (*head == NULL) {
-        *head = new;        
-    } else {
-        new->next = *head;
-        *head = new;
-    }
 }
 
-
-
-
-int main() {
-    struct linked *head = NULL; // Initialize head to NULL
-    insertatbegin(&head, 10);
-    insertatbegin(&head, 20);
-    insertatbegin(&head, 30);
-    insertatbegin(&head, 40);
-
+void insert_at_begin(node**,int);    
+int main()
+{   
+    node *head=NULL;
+    insert_at_begin(&head,10);
+    insert_at_begin(&head,20);
+    insert_at_begin(&head,30);
+    insert_at_begin(&head,40);
+    node *temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d|%u->",temp->data,temp->next);
+        temp=temp->next;
+    }
+    freeinsert_at_begin(head);
+}
+ void insert_at_begin( node**head,int num){
+    node *new=(node*)malloc(sizeof(node));
+    new->data=num;
+    if(*head==NULL){
+        new->next=NULL;
+        *head=new;
+    }
+    else{
+        new->next=*head;
+        *head=new;
+    }
     
-    printList(head);
 
-    return 0;
 }
+
+
+
+
+
