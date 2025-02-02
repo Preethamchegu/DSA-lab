@@ -9,20 +9,21 @@ int main()
 {   int n,i,num;
     printf("enter no.of nodes:");
 	scanf("%d",&n);
-	printf("enter numbers from last: ");
-	node *head=NULL;
+	node *prev;
 	for(i=0;i<n;i++){
 		node *new=(node*)malloc(sizeof(node));
 		scanf("%d",&num);
-		if(head==NULL){
+		if(head == NULL){
 			new->data=num;
 			head=new;
 			new->next=NULL;
+            prev=new;
 		}
 		else{
 			new->data=num;
-			new->next=head;
-			head=new;	
+			new->next=NULL;
+			prev->next=new; 
+            prev=prev->next;	
 		}
 	}
     printf("before removal:\n");
