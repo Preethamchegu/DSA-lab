@@ -10,7 +10,7 @@ int main()
 	scanf("%d",&n);
 	node*head=NULL;
 	node *prev;
-        printf("enter numbers in your list");
+        printf("enter numbers in your list:");
 	for(i=0;i<n;i++){
 		node *new=(node*)malloc(sizeof(node));
 		scanf("%d",&num);
@@ -26,7 +26,6 @@ int main()
 			prev->next=new; 
             prev=prev->next;	
 		}
-	}
 	}
 	printf("before rotations your list in form");
 	node *temp=head;
